@@ -1,0 +1,14 @@
+{
+  "name": "vllm-progress-pi",
+  "version": "0.1.0",
+  "description": "Context / prefill / decode meter in the pi footer, fed by a local vLLM server",
+  "keywords": ["pi-package", "vllm", "progress", "status"],
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/BlackCatTB/vllm-progress-pi.git" },
+  "pi": {
+    "extensions": ["./extensions"]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  }
+}
