@@ -67,9 +67,17 @@ Measure it client-side from streaming chunk timings; it is exact there, and the
 server cannot provide it live for the same reason as above.
 
 **Gotcha:** if your server runs a reasoning parser (e.g. `--reasoning-parser
-qwen3`), the thinking phase arrives as `delta.reasoning_content`, not
-`delta.content`. A client that counts only `delta.content` shows a frozen bar for
-the entire thinking phase.
+qwen3`), the thinking phase arrives in a separate delta field, not `delta.content`. A
+client that counts only `delta.content` shows a frozen bar for the whole thinking
+phase.
+
+The field name is **not** what the OpenAI-compatible docs imply. Verified against
+this server by dumping raw SSE chunks: it is **`delta.reasoning`**, not
+`delta.reasoning_content`. Accept both:
+
+```js
+const text = d.delta.content || d.delta.reasoning || d.delta.reasoning_content;
+```
 
 ## License
 
